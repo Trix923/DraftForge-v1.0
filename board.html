@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DraftForge — Board</title>
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="board.css">
+</head>
+<body>
+  <nav class="navbar">
+    <a class="nav-logo nav-box" href="index.html">
+      <img class="nav-logo-img" src="logo.png" alt="DraftForge">DraftForge
+    </a>
+    <div class="nav-links nav-box">
+      <a class="nav-link" href="index.html"    data-i18n="navHome"></a>
+      <a class="nav-link" href="draft.html"    data-i18n="navDraft"></a>
+      <a class="nav-link" href="tierlist.html" data-i18n="navTierlist"></a>
+      <a class="nav-link active" href="board.html" data-i18n="navBoard"></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-selectors nav-box">
+        <div class="nav-group">
+          <span class="nav-group-label" data-i18n="labelLang"></span>
+          <div class="lang-selector">
+            <button class="lang-btn" data-lang="en">
+              <span class="flag-diagonal">
+                <img src="https://flagcdn.com/w40/us.png" alt="" class="flag-diag flag-diag-top">
+                <img src="https://flagcdn.com/w40/gb.png" alt="" class="flag-diag flag-diag-bot">
+              </span>EN
+            </button>
+            <button class="lang-btn" data-lang="fr">
+              <img class="flag-img" src="https://flagcdn.com/w40/fr.png" alt="FR"> FR
+            </button>
+            <button class="lang-btn" data-lang="es">
+              <img class="flag-img" src="https://flagcdn.com/w40/es.png" alt="ES"> ES
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="board-page">
+    <div class="board-center">
+
+      <!-- BARRE D'OUTILS -->
+      <div class="board-toolbar">
+        <!-- Gauche : undo/redo -->
+        <div class="board-tool-group">
+          <button class="btn board-action" id="btn-undo" data-i18n="boardUndo"></button>
+          <button class="btn board-action" id="btn-redo" data-i18n="boardRedo"></button>
+        </div>
+
+        <!-- Centre absolu -->
+        <div class="board-toolbar-center">
+          <div class="board-tool-group">
+            <button class="btn board-tool active" data-tool="hand" title="Déplacer">🖐</button>
+            <button class="btn board-tool" data-tool="pen"  title="Crayon">✏️</button>
+          </div>
+          <div class="board-tool-group">
+            <button class="board-color active" data-color="#e84040" style="--c:#e84040"></button>
+            <button class="board-color" data-color="#4a9eff" style="--c:#4a9eff"></button>
+            <button class="board-color" data-color="#40dd80" style="--c:#40dd80"></button>
+            <button class="board-color" data-color="#ffd700" style="--c:#ffd700"></button>
+            <button class="board-color" data-color="#ffffff" style="--c:#ffffff"></button>
+          </div>
+          <div class="board-tool-group">
+            <input type="range" id="brush-size" min="1" max="20" value="5" class="board-brush-slider">
+            <span id="brush-label" class="brush-label">5px</span>
+          </div>
+        </div>
+
+        <!-- Droite : clear seulement -->
+        <div class="board-tool-group board-tool-right">
+          <button class="btn btn-danger board-action" id="btn-clear" data-i18n="boardClear"></button>
+        </div>
+      </div>
+
+      <!-- BARRE RECHERCHE CHAMPIONS -->
+      <div class="board-champs-bar">
+        <div class="board-champs-left">
+          <input type="text" id="board-search" class="board-champ-search" placeholder="🔍" autocomplete="off">
+          <div class="board-team-row">
+            <button class="btn board-team active" data-team="blue"><span class="team-pip" style="background:#4a9eff"></span> Blue</button>
+            <button class="btn board-team" data-team="red"><span class="team-pip" style="background:#ff5050"></span> Red</button>
+          </div>
+        </div>
+        <div class="board-champs-strip" id="board-champs-strip"></div>
+      </div>
+
+      <!-- MAP -->
+      <div class="board-map-outer" id="board-map-outer">
+        <div class="board-map-inner" id="board-map-inner">
+          <img class="board-map-img" id="board-map-img" src="map.png" alt="map" draggable="false">
+          <div class="board-tokens" id="board-tokens"></div>
+          <canvas class="board-canvas" id="board-canvas"></canvas>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="confirm-overlay" id="confirm-clear-overlay">
+    <div class="confirm-box">
+      <p class="confirm-title" id="confirm-clear-title"></p>
+      <p class="confirm-msg"   id="confirm-clear-msg"></p>
+      <div class="confirm-btns">
+        <button class="btn btn-danger" id="confirm-clear-yes"></button>
+        <button class="btn"            id="confirm-clear-no"></button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <span class="footer-patreon"><span data-i18n="footerSupport"></span> <a class="footer-link" href="https://www.patreon.com/c/Trix92?vanity=user" target="_blank">Patreon</a></span>
+    <span data-i18n="footerNote"></span>
+    <span class="footer-sep">·</span>
+    <span><span data-i18n="createdBy"></span> <a class="footer-link" href="https://x.com/Trix9232" target="_blank">Trix</a></span>
+    <span class="footer-version">v1.0 <span class="footer-sep">·</span> <a class="footer-link" href="https://github.com/Trix923" target="_blank">GitHub</a></span>
+  </footer>
+
+  <script src="shared.js"></script>
+  <script src="board.js"></script>
+  <div class="ad-wrap ad-wrap-left"><div class="ad-tag">Ad</div><div class="ad-slot"><span class="ad-slot-msg">Vous utilisez un bloqueur de publicités.<br><br>Si vous appréciez le site, pensez à le désactiver pour nous soutenir 🙏</span></div></div>
+  <div class="ad-wrap ad-wrap-right"><div class="ad-tag">Ad</div><div class="ad-slot"><span class="ad-slot-msg">Vous utilisez un bloqueur de publicités.<br><br>Si vous appréciez le site, pensez à le désactiver pour nous soutenir 🙏</span></div></div>
+</body>
+</html>

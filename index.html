@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DraftForge — Home</title>
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="home.css">
+</head>
+<body>
+  <nav class="navbar">
+    <!-- Logo encadré -->
+    <a class="nav-logo nav-box" href="index.html">
+      <img class="nav-logo-img" src="logo.png" alt="DraftForge">DraftForge
+    </a>
+
+    <!-- Menu centré encadré -->
+    <div class="nav-links nav-box">
+      <a class="nav-link" href="index.html"    data-i18n="navHome"></a>
+      <a class="nav-link" href="draft.html"    data-i18n="navDraft"></a>
+      <a class="nav-link" href="tierlist.html" data-i18n="navTierlist"></a>
+      <a class="nav-link" href="board.html"        data-i18n="navBoard"></a>
+    </div>
+
+    <!-- Thèmes + langues encadrés -->
+    <div class="nav-right">
+      <div class="nav-selectors nav-box">
+        <div class="nav-group">
+          <span class="nav-group-label" data-i18n="labelLang"></span>
+          <div class="lang-selector">
+            <button class="lang-btn" data-lang="en">
+              <span class="flag-diagonal">
+                <img src="https://flagcdn.com/w40/us.png" alt="" class="flag-diag flag-diag-top">
+                <img src="https://flagcdn.com/w40/gb.png" alt="" class="flag-diag flag-diag-bot">
+              </span>
+              EN
+            </button>
+            <button class="lang-btn" data-lang="fr">
+              <img class="flag-img" src="https://flagcdn.com/w40/fr.png" alt="FR">
+              FR
+            </button>
+            <button class="lang-btn" data-lang="es">
+              <img class="flag-img" src="https://flagcdn.com/w40/es.png" alt="ES">
+              ES
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <section class="home-hero">
+    <img class="home-logo" src="logo.png" alt="DraftForge">
+    <div class="home-welcome">
+      <div class="home-text">
+        <h1 class="home-greeting" data-i18n="greeting"></h1>
+        <p class="home-sub" data-i18n="greetingSub"></p>
+      </div>
+    </div>
+    <p class="home-intro" data-i18n="homeIntro"></p>
+    <!-- Ornn et Jayce en bas, flanquant la flèche -->
+    <div class="home-characters">
+      <img class="ornn-img ornn-left" src="ornn.png" alt="Ornn">
+      <a class="home-scroll-arrow" href="#home-features" aria-label="Défiler vers le bas">&#8964;</a>
+      <img class="ornn-img jayce-right" src="jayce.png" alt="Jayce">
+    </div>
+  </section>
+
+  <!-- Cartes des fonctionnalités -->
+  <section class="home-features" id="home-features">
+
+    <!-- Draft — gauche -->
+    <div class="home-card home-card-left">
+      <div class="home-card-img-wrap">
+        <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Azir_0.jpg" alt="Draft" class="home-card-img">
+      </div>
+      <div class="home-card-body">
+        <h2 class="home-card-title" data-i18n="homeDraftTitle"></h2>
+        <p class="home-card-desc" data-i18n="homeDraftDesc"></p>
+        <a href="draft.html" class="btn btn-gold home-card-btn" data-i18n="homeDraftBtn"></a>
+      </div>
+    </div>
+
+    <!-- Tier List — droite -->
+    <div class="home-card home-card-right">
+      <div class="home-card-body">
+        <h2 class="home-card-title" data-i18n="homeTlTitle"></h2>
+        <p class="home-card-desc" data-i18n="homeTlDesc"></p>
+        <a href="tierlist.html" class="btn btn-gold home-card-btn" data-i18n="homeTlBtn"></a>
+      </div>
+      <div class="home-card-img-wrap">
+        <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Jinx_0.jpg" alt="Tier List" class="home-card-img">
+      </div>
+    </div>
+
+    <!-- Board — gauche -->
+    <div class="home-card home-card-left">
+      <div class="home-card-img-wrap">
+        <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Orianna_0.jpg" alt="Board" class="home-card-img">
+      </div>
+      <div class="home-card-body">
+        <h2 class="home-card-title" data-i18n="homeBoardTitle"></h2>
+        <p class="home-card-desc" data-i18n="homeBoardDesc"></p>
+        <a href="board.html" class="btn btn-gold home-card-btn" data-i18n="homeBoardBtn"></a>
+      </div>
+    </div>
+
+  </section>
+
+  <footer class="site-footer">
+    <span class="footer-patreon"><span data-i18n="footerSupport"></span> <a class="footer-link" href="https://www.patreon.com/c/Trix92?vanity=user" target="_blank">Patreon</a></span>
+    <span data-i18n="footerNote"></span>
+    <span class="footer-sep">·</span>
+    <span><span data-i18n="createdBy"></span> <a class="footer-link" href="https://x.com/Trix9232" target="_blank">Trix</a></span>
+    <span class="footer-version">v1.0 <span class="footer-sep">·</span> <a class="footer-link" href="https://github.com/Trix923" target="_blank">GitHub</a></span>
+  </footer>
+
+  <script src="shared.js"></script>
+  <script>
+    initNavbar()
+    applyTranslations()
+  </script>
+  <div class="ad-wrap ad-wrap-left"><div class="ad-tag">Ad</div><div class="ad-slot"><span class="ad-slot-msg">Vous utilisez un bloqueur de publicités.<br><br>Si vous appréciez le site, pensez à le désactiver pour nous soutenir 🙏</span></div></div>
+  <div class="ad-wrap ad-wrap-right"><div class="ad-tag">Ad</div><div class="ad-slot"><span class="ad-slot-msg">Vous utilisez un bloqueur de publicités.<br><br>Si vous appréciez le site, pensez à le désactiver pour nous soutenir 🙏</span></div></div>
+</body>
+</html>

@@ -1,0 +1,230 @@
+/* ============================================================
+   BOARD.CSS
+   ============================================================ */
+
+/* Page entière */
+.board-page {
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 12px;
+  padding-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  box-sizing: border-box;
+}
+
+/* Wrapper centré qui contient toolbar + map + champs-bar */
+.board-center {
+  width: min(100%, 1475px);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ── Barre d'outils (haut) ── */
+.board-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  background: var(--panel);
+  border: 1px solid var(--border-m);
+  border-radius: var(--r-lg) var(--r-lg) 0 0;
+  padding: 11px 14px;
+  position: relative;
+}
+
+/* Centre absolu par rapport à la toolbar */
+.board-toolbar-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.board-tool-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.board-tool {
+  width: 36px; height: 36px; padding: 0;
+  font-size: 16px;
+  display: flex; align-items: center; justify-content: center;
+}
+.board-tool.active {
+  color: var(--gold);
+  background: var(--gold-dim);
+  border-color: rgba(212,170,80,0.45);
+}
+
+.board-color {
+  width: 26px; height: 26px; border-radius: 50%;
+  background: var(--c);
+  border: 2px solid rgba(255,255,255,0.15);
+  cursor: pointer;
+  transition: transform 0.12s, border-color 0.12s, opacity 0.15s;
+  flex-shrink: 0;
+}
+/* Griser couleurs + taille quand crayon inactif */
+.board-toolbar.pen-inactive .board-color,
+.board-toolbar.pen-inactive .board-brush-slider,
+.board-toolbar.pen-inactive .brush-label {
+  opacity: 0.35;
+  pointer-events: none;
+}
+.board-color:hover { transform: scale(1.15); border-color: rgba(255,255,255,0.5); }
+.board-color.active { border-color: #fff; box-shadow: 0 0 0 2px var(--c); }
+
+.board-brush-slider { width: 80px; accent-color: var(--gold); cursor: pointer; }
+.brush-label { font-size: 12px; color: var(--text-muted); font-family: var(--f-display); min-width: 28px; }
+
+.board-action { font-size: 13px; padding: 4px 12px; height: 32px; }
+.board-tool-right { margin-left: auto; }
+
+/* ── Map outer ── */
+.board-map-outer {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: #0a0e14;
+  border: 1px solid var(--border-m);
+  border-top: none;
+  border-radius: 0 0 var(--r-lg) var(--r-lg);
+  position: relative;
+  cursor: crosshair;
+}
+
+/* ── Map inner : élément zoomé/déplacé ── */
+.board-map-inner {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  transform-origin: 0 0;
+  will-change: transform;
+}
+
+.board-map-img {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  user-select: none;
+  pointer-events: none;
+}
+
+.board-tokens {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+}
+
+.board-canvas {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  touch-action: none;
+}
+
+/* ── Tokens ── */
+.board-token {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: grab;
+  border: 3px solid #4a9eff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.7);
+  pointer-events: all;
+  user-select: none;
+  transition: box-shadow 0.12s;
+}
+.board-token:hover { box-shadow: 0 4px 18px rgba(0,0,0,0.9); z-index: 10; }
+.board-token.team-red  { border-color: #ff5050; }
+.board-token.team-blue { border-color: #4a9eff; }
+.board-token img { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
+/* ── Barre champions ── */
+.board-champs-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--panel);
+  border: 1px solid var(--border-m);
+  border-top: none;
+  border-radius: 0;
+  padding: 11px 14px;
+  min-height: 0;
+}
+
+.board-champs-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.board-team-row {
+  display: flex;
+  gap: 0;
+}
+
+.board-champ-search {
+  width: 100%;
+  padding: 6px 12px;
+  background: var(--slot); border: 1px solid var(--border-m);
+  border-radius: var(--r); color: var(--text);
+  font-size: 14px; outline: none;
+  transition: border-color var(--t);
+  box-sizing: border-box;
+}
+.board-champ-search:focus { border-color: rgba(212,170,80,0.5); }
+
+.board-team {
+  flex: 1;
+  display: flex; align-items: center; justify-content: center; gap: 5px;
+  font-size: 13px; padding: 5px 10px;
+  border-radius: 0;
+}
+.board-team:first-child { border-radius: var(--r) 0 0 var(--r); }
+.board-team:last-child  { border-radius: 0 var(--r) var(--r) 0; }
+.board-team.active { color: var(--gold); background: var(--gold-dim); border-color: rgba(212,170,80,0.45); }
+.team-pip { width: 10px; height: 10px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+
+.board-champs-strip {
+  display: flex; gap: 5px;
+  overflow-x: auto; flex: 1;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-m) transparent;
+  padding: 2px 0;
+}
+.board-champs-strip::-webkit-scrollbar { height: 4px; }
+.board-champs-strip::-webkit-scrollbar-thumb { background: var(--border-m); border-radius: 2px; }
+
+.board-champ-card {
+  width: 52px; height: 52px;
+  border-radius: 50%; overflow: hidden; flex-shrink: 0;
+  cursor: grab; border: 2px solid var(--border-m);
+  transition: transform 0.12s, border-color 0.12s;
+}
+.board-champ-card:hover { transform: scale(1.12); z-index: 1; }
+.board-champ-card img { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
+.board-champ-card.hidden { display: none; }
+
+/* Couleur de bordure selon l'équipe active */
+#board-champs-strip[data-team="blue"] .board-champ-card { border-color: #4a9eff; }
+#board-champs-strip[data-team="red"]  .board-champ-card { border-color: #ff5050; }
+
+/* Teinte rouge quand on drag un token dessus (suppression) */
+.board-champs-strip.drag-remove {
+  background: rgba(220,60,60,0.08);
+  outline: 2px dashed rgba(220,60,60,0.5);
+  border-radius: var(--r);
+}

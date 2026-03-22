@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DraftForge — Tier List</title>
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="tierlist.css">
+</head>
+<body>
+  <nav class="navbar">
+    <!-- Logo encadré -->
+    <a class="nav-logo nav-box" href="index.html">
+      <img class="nav-logo-img" src="logo.png" alt="DraftForge">DraftForge
+    </a>
+
+    <!-- Menu centré encadré -->
+    <div class="nav-links nav-box">
+      <a class="nav-link" href="index.html"    data-i18n="navHome"></a>
+      <a class="nav-link" href="draft.html"    data-i18n="navDraft"></a>
+      <a class="nav-link" href="tierlist.html" data-i18n="navTierlist"></a>
+      <a class="nav-link" href="board.html"        data-i18n="navBoard"></a>
+    </div>
+
+    <!-- Thèmes + langues encadrés -->
+    <div class="nav-right">
+      <div class="nav-selectors nav-box">
+        <div class="nav-group">
+          <span class="nav-group-label" data-i18n="labelLang"></span>
+          <div class="lang-selector">
+            <button class="lang-btn" data-lang="en">
+              <span class="flag-diagonal">
+                <img src="https://flagcdn.com/w40/us.png" alt="" class="flag-diag flag-diag-top">
+                <img src="https://flagcdn.com/w40/gb.png" alt="" class="flag-diag flag-diag-bot">
+              </span>
+              EN
+            </button>
+            <button class="lang-btn" data-lang="fr">
+              <img class="flag-img" src="https://flagcdn.com/w40/fr.png" alt="FR">
+              FR
+            </button>
+            <button class="lang-btn" data-lang="es">
+              <img class="flag-img" src="https://flagcdn.com/w40/es.png" alt="ES">
+              ES
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- ZONE PRINCIPALE -->
+  <div class="tl-wrapper">
+
+    <!-- Titre centré sur le rectangle + boutons aux extrémités -->
+    <div class="tl-title-row">
+      <div class="tl-title-left">
+        <button class="btn" id="tl-add-tier" data-i18n="tlAddTier"></button>
+      </div>
+      <input type="text" id="tl-title" class="tl-title-input" data-i18n-placeholder="tlTitlePlaceholder" maxlength="60">
+      <div class="tl-title-actions">
+        <button class="btn btn-danger" id="tl-reset" data-i18n="tlReset"></button>
+      </div>
+    </div>
+
+    <div id="tl-tiers"></div>
+
+    <!-- Pool : filtres + recherche + champions -->
+    <div class="tl-pool-section">
+      <div class="tl-pool-controls">
+        <input type="text" id="tl-search" class="tl-search" autocomplete="off" data-i18n-ph="tlSearch">
+        <div class="role-filters" id="tl-role-filters">
+          <button class="role-btn active" data-role="all" data-i18n="all"></button>
+          <button class="role-btn" data-role="top">Top</button>
+          <button class="role-btn" data-role="jungle">Jungle</button>
+          <button class="role-btn" data-role="mid">Mid</button>
+          <button class="role-btn" data-role="adc">ADC</button>
+          <button class="role-btn" data-role="support">Support</button>
+        </div>
+      </div>
+      <div id="tl-pool" class="tl-pool"></div>
+    </div>
+  </div>
+
+
+  <!-- Popup confirmation reset -->
+  <div class="confirm-overlay" id="tl-confirm-reset-overlay">
+    <div class="confirm-box">
+      <p class="confirm-title" id="tl-confirm-reset-title"></p>
+      <p class="confirm-msg"   id="tl-confirm-reset-msg"></p>
+      <div class="confirm-btns">
+        <button class="btn btn-danger" id="tl-confirm-reset-yes"></button>
+        <button class="btn"            id="tl-confirm-reset-no"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popup confirmation delete tier -->
+  <div class="confirm-overlay" id="tl-confirm-delete-overlay">
+    <div class="confirm-box">
+      <p class="confirm-title" id="tl-confirm-delete-title"></p>
+      <p class="confirm-msg"   id="tl-confirm-delete-msg"></p>
+      <div class="confirm-btns">
+        <button class="btn btn-danger" id="tl-confirm-delete-yes"></button>
+        <button class="btn"            id="tl-confirm-delete-no"></button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <span class="footer-patreon"><span data-i18n="footerSupport"></span> <a class="footer-link" href="https://www.patreon.com/c/Trix92?vanity=user" target="_blank">Patreon</a></span>
+    <span data-i18n="footerNote"></span>
+    <span class="footer-sep">·</span>
+    <span><span data-i18n="createdBy"></span> <a class="footer-link" href="https://x.com/Trix9232" target="_blank">Trix</a></span>
+    <span class="footer-version">v1.0 <span class="footer-sep">·</span> <a class="footer-link" href="https://github.com/Trix923" target="_blank">GitHub</a></span>
+  </footer>
+
+  <script src="shared.js"></script>
+  <script src="tierlist.js"></script>
+
+  <div class="ad-wrap ad-wrap-left"><div class="ad-tag">Ad</div><div class="ad-slot"><span class="ad-slot-msg">Vous utilisez un bloqueur de publicités.<br><br>Si vous appréciez le site, pensez à le désactiver pour nous soutenir 🙏</span></div></div>
+  <div class="ad-wrap ad-wrap-right"><div class="ad-tag">Ad</div><div class="ad-slot"><span class="ad-slot-msg">Vous utilisez un bloqueur de publicités.<br><br>Si vous appréciez le site, pensez à le désactiver pour nous soutenir 🙏</span></div></div>
+</body>
+</html>

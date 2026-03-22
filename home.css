@@ -1,0 +1,203 @@
+/* ============================================================
+   HOME.CSS
+   ============================================================ */
+
+.home-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* min-height : la section hero occupe au moins tout l'écran,
+     mais la page peut scroller en dessous (pour la FAQ future) */
+  min-height: calc(100vh - var(--nav-h) - 52px);
+  text-align: center;
+  padding: 40px 24px 80px;
+}
+
+.home-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Images flanquant le titre */
+.ornn-img {
+  height: 260px;
+  width: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+  filter: drop-shadow(0 6px 18px rgba(0,0,0,0.5));
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.ornn-left { transform: scaleX(-1); }
+.ornn-left:hover { transform: scaleX(-1) scale(1.08); }
+.ornn-img:not(.ornn-left):hover { transform: scale(1.08); }
+
+.jayce-right {
+  height: 220px;
+  margin-left: -3px;
+  align-self: flex-end;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+.jayce-right:hover { transform: scale(1.08); }
+
+/* Grand logo animé */
+.home-logo {
+  width: 260px;
+  height: 260px;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.4));
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.home-logo:hover {
+  transform: scale(1.08);
+}
+
+.home-greeting {
+  font-family: var(--f-display);
+  font-size: clamp(48px, 7vw, 96px);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--text);
+  margin-bottom: 14px;
+}
+
+.home-sub {
+  font-size: 18px;
+  color: var(--text-muted);
+  max-width: 560px;
+  line-height: 1.6;
+}
+
+/* Description générale sous le hero */
+.home-intro {
+  max-width: 600px;
+  margin: 12px auto 0;
+  font-size: 17px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  text-align: center;
+  padding: 0 24px;
+}
+
+/* Ornn + flèche + Jayce en bas du hero */
+.home-characters {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 80px;
+  width: 100%;
+  max-width: 900px;
+  margin-top: 28px;
+}
+
+/* Flèche de scroll animée */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(10px); }
+}
+
+.home-scroll-arrow {
+  display: block;
+  margin: 0 0 8px;
+  font-size: 42px;
+  color: var(--text-dim);
+  line-height: 1;
+  text-decoration: none;
+  animation: bounce 1.6s ease-in-out infinite;
+  transition: color 0.2s;
+  user-select: none;
+  align-self: center;
+}
+.home-scroll-arrow:hover {
+  color: var(--gold);
+}
+
+/* ── Section cartes fonctionnalités ── */
+.home-features {
+  width: 100%;
+  max-width: 1500px;
+  margin: 64px auto 100px;
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  box-sizing: border-box;
+}
+
+.home-card {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  background: var(--panel);
+  border: 1px solid var(--border-m);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  max-width: 900px;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+.home-card:hover {
+  border-color: rgba(212,170,80,0.45);
+  box-shadow: 0 4px 32px rgba(0,0,0,0.3);
+}
+
+/* Gauche : image à gauche, texte à droite */
+.home-card-left  { align-self: flex-start; margin-left: 0; }
+/* Droite : image à droite, texte à gauche */
+.home-card-right { align-self: flex-end;   margin-right: 0; }
+
+.home-card-img-wrap {
+  width: 280px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.home-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  transition: transform 0.4s ease;
+}
+.home-card:hover .home-card-img {
+  transform: scale(1.05);
+}
+
+.home-card-body {
+  padding: 32px 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+}
+
+.home-card-title {
+  font-family: var(--f-display);
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--gold);
+}
+
+.home-card-desc {
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  max-width: 440px;
+}
+
+.home-card-btn {
+  align-self: flex-start;
+  margin-top: 6px;
+  font-size: 14px;
+  padding: 8px 22px;
+  text-decoration: none;
+}
+
+

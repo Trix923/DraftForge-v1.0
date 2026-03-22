@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DraftForge — Draft</title>
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="draft.css">
+</head>
+<body>
+  <nav class="navbar">
+    <!-- Logo encadré -->
+    <a class="nav-logo nav-box" href="index.html">
+      <img class="nav-logo-img" src="logo.png" alt="DraftForge">DraftForge
+    </a>
+
+    <!-- Menu centré encadré -->
+    <div class="nav-links nav-box">
+      <a class="nav-link" href="index.html"    data-i18n="navHome"></a>
+      <a class="nav-link" href="draft.html"    data-i18n="navDraft"></a>
+      <a class="nav-link" href="tierlist.html" data-i18n="navTierlist"></a>
+      <a class="nav-link" href="board.html"        data-i18n="navBoard"></a>
+    </div>
+
+    <!-- Thèmes + langues encadrés -->
+    <div class="nav-right">
+      <div class="nav-selectors nav-box">
+        <div class="nav-group">
+          <span class="nav-group-label" data-i18n="labelLang"></span>
+          <div class="lang-selector">
+            <button class="lang-btn" data-lang="en">
+              <span class="flag-diagonal">
+                <img src="https://flagcdn.com/w40/us.png" alt="" class="flag-diag flag-diag-top">
+                <img src="https://flagcdn.com/w40/gb.png" alt="" class="flag-diag flag-diag-bot">
+              </span>
+              EN
+            </button>
+            <button class="lang-btn" data-lang="fr">
+              <img class="flag-img" src="https://flagcdn.com/w40/fr.png" alt="FR">
+              FR
+            </button>
+            <button class="lang-btn" data-lang="es">
+              <img class="flag-img" src="https://flagcdn.com/w40/es.png" alt="ES">
+              ES
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- BARRE DE DRAFT -->
+  <div class="draft-topbar">
+    <div class="dtb-left">
+      <div class="bo-selector">
+        <button class="bo-btn" data-bo="1">BO1</button>
+        <button class="bo-btn active" data-bo="3">BO3</button>
+        <button class="bo-btn" data-bo="5">BO5</button>
+      </div>
+      <div class="game-counter">
+        <div class="game-dots" id="game-dots"></div>
+        <span class="game-label" id="game-label"></span>
+      </div>
+      <button class="btn btn-gold" id="btn-next" style="display:none" data-i18n="nextGame"></button>
+      <button class="btn btn-win-blue" id="btn-win-blue" style="display:none" data-i18n="winBlue"></button>
+      <button class="btn btn-win-red"  id="btn-win-red"  style="display:none" data-i18n="winRed"></button>
+      <button class="btn btn-win-blue" id="btn-win-blue" style="display:none" data-i18n="winBlue"></button>
+      <button class="btn btn-win-red"  id="btn-win-red"  style="display:none" data-i18n="winRed"></button>
+    </div>
+
+    <!-- Indicateur centré en absolu dans la barre -->
+    <div class="turn-indicator" id="turn-indicator">
+      <span id="turn-team"></span>
+      <span class="turn-action" id="turn-action"></span>
+      <span class="turn-phase" id="turn-phase"></span>
+    </div>
+
+    <div class="dtb-right">
+      <button class="btn" id="btn-swap" data-i18n="swapSides"></button>
+      <button class="btn" id="btn-reset" data-i18n="resetGame"></button>
+      <button class="btn btn-danger" id="btn-reset-series" data-i18n="resetSeries"></button>
+    </div>
+  </div>
+
+
+  <!-- ZONE PRINCIPALE -->
+  <main class="draft-area">
+
+    <!-- ÉQUIPE BLEUE -->
+    <section class="team-panel" id="panel-blue">
+      <div class="team-header">
+        <span class="team-dot dot-blue"></span>
+        <input class="team-name-input" id="team-name-blue" data-default="blueTeam" type="text" maxlength="24" autocomplete="off">
+        <span class="fp-badge" id="fp-blue" data-i18n="firstPick"></span>
+      </div>
+      <div class="section-label" data-i18n="bans"></div>
+      <div class="bans-row">
+        <div class="ban-slot" data-team="blue" data-index="0"></div>
+        <div class="ban-slot" data-team="blue" data-index="1"></div>
+        <div class="ban-slot" data-team="blue" data-index="2"></div>
+        <div class="ban-slot" data-team="blue" data-index="3"></div>
+        <div class="ban-slot" data-team="blue" data-index="4"></div>
+      </div>
+      <div class="section-label" data-i18n="picks"></div>
+      <div class="picks-col">
+        <div class="pick-slot" data-team="blue" data-index="0" data-role-label="Top">   <div class="slot-content"><span class="slot-role-label">Top</span></div></div>
+        <div class="pick-slot" data-team="blue" data-index="1" data-role-label="Jungle"><div class="slot-content"><span class="slot-role-label">Jungle</span></div></div>
+        <div class="pick-slot" data-team="blue" data-index="2" data-role-label="Mid">   <div class="slot-content"><span class="slot-role-label">Mid</span></div></div>
+        <div class="pick-slot" data-team="blue" data-index="3" data-role-label="ADC">   <div class="slot-content"><span class="slot-role-label">ADC</span></div></div>
+        <div class="pick-slot" data-team="blue" data-index="4" data-role-label="Support"><div class="slot-content"><span class="slot-role-label">Support</span></div></div>
+      </div>
+    </section>
+
+    <!-- PANNEAU CENTRAL -->
+    <section class="center-panel">
+      <input type="text" id="search-input" class="search-input" autocomplete="off" data-i18n-ph="searchPlaceholder">
+      <div class="role-filters">
+        <button class="role-btn active" data-role="all" data-i18n="all"></button>
+        <button class="role-btn" data-role="top">Top</button>
+        <button class="role-btn" data-role="jungle">Jungle</button>
+        <button class="role-btn" data-role="mid">Mid</button>
+        <button class="role-btn" data-role="adc">ADC</button>
+        <button class="role-btn" data-role="support">Support</button>
+      </div>
+      <div class="champions-grid" id="champions-grid"></div>
+    </section>
+
+    <!-- ÉQUIPE ROUGE -->
+    <section class="team-panel" id="panel-red">
+      <div class="team-header">
+        <span class="team-dot dot-red"></span>
+        <input class="team-name-input" id="team-name-red" data-default="redTeam" type="text" maxlength="24" autocomplete="off">
+        <span class="fp-badge hidden" id="fp-red" data-i18n="firstPick"></span>
+      </div>
+      <div class="section-label" data-i18n="bans"></div>
+      <div class="bans-row">
+        <div class="ban-slot" data-team="red" data-index="0"></div>
+        <div class="ban-slot" data-team="red" data-index="1"></div>
+        <div class="ban-slot" data-team="red" data-index="2"></div>
+        <div class="ban-slot" data-team="red" data-index="3"></div>
+        <div class="ban-slot" data-team="red" data-index="4"></div>
+      </div>
+      <div class="section-label" data-i18n="picks"></div>
+      <div class="picks-col">
+        <div class="pick-slot" data-team="red" data-index="0" data-role-label="Top">   <div class="slot-content"><span class="slot-role-label">Top</span></div></div>
+        <div class="pick-slot" data-team="red" data-index="1" data-role-label="Jungle"><div class="slot-content"><span class="slot-role-label">Jungle</span></div></div>
+        <div class="pick-slot" data-team="red" data-index="2" data-role-label="Mid">   <div class="slot-content"><span class="slot-role-label">Mid</span></div></div>
+        <div class="pick-slot" data-team="red" data-index="3" data-role-label="ADC">   <div class="slot-content"><span class="slot-role-label">ADC</span></div></div>
+        <div class="pick-slot" data-team="red" data-index="4" data-role-label="Support"><div class="slot-content"><span class="slot-role-label">Support</span></div></div>
+      </div>
+    </section>
+
+  
+
+  </main>
+
+  <!-- Popup de confirmation reset série -->
+  <div class="confirm-overlay" id="confirm-overlay">
+    <div class="confirm-box">
+      <p class="confirm-title" id="confirm-title"></p>
+      <p class="confirm-msg"   id="confirm-msg"></p>
+      <div class="confirm-btns">
+        <button class="btn btn-danger" id="confirm-yes"></button>
+        <button class="btn"            id="confirm-no"></button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <span class="footer-patreon"><span data-i18n="footerSupport"></span> <a class="footer-link" href="https://www.patreon.com/c/Trix92?vanity=user" target="_blank">Patreon</a></span>
+    <span data-i18n="footerNote"></span>
+    <span class="footer-sep">·</span>
+    <span><span data-i18n="createdBy"></span> <a class="footer-link" href="https://x.com/Trix9232" target="_blank">Trix</a></span>
+    <span class="footer-version">v1.0 <span class="footer-sep">·</span> <a class="footer-link" href="https://github.com/Trix923" target="_blank">GitHub</a></span>
+  </footer>
+
+  <script src="shared.js"></script>
+  <script src="draft.js"></script>
+
+  <div class="ad-wrap ad-wrap-left"><div class="ad-tag">Ad</div><div class="ad-slot"><span class="ad-slot-msg">Vous utilisez un bloqueur de publicités.<br><br>Si vous appréciez le site, pensez à le désactiver pour nous soutenir 🙏</span></div></div>
+  <div class="ad-wrap ad-wrap-right"><div class="ad-tag">Ad</div><div class="ad-slot"><span class="ad-slot-msg">Vous utilisez un bloqueur de publicités.<br><br>Si vous appréciez le site, pensez à le désactiver pour nous soutenir 🙏</span></div></div>
+</body>
+</html>
